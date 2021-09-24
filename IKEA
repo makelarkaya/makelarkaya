@@ -1,0 +1,159 @@
+{
+    "nama": "Ikea",
+    "base_url": [
+        "https://www.ikea.co.id/",
+        "https://ikea.co.id/"
+    ],
+    "update_date": "2019-03-19",
+    "penulis": "Tim Pengembang QloBOT",
+    "author_url": "https://qlobot.com",
+    "pola": {
+        "Daftar": {
+            "pagination_url_param": "halaman=[halaman]",
+            "selector": ".product-display",
+            "url": {
+                "selector": ".deskripsi produk > h3 > a",
+                "baca": "attr:href",
+                "filter_keluaran": {
+                    "start_with": "https://www.ikea.co.id"
+                }
+            },
+            "nama": {
+                "selector": ".deskripsi produk > h3 > a",
+                "baca": "isi"
+            },
+            "gambar kecil": {
+                "selector": ".product-media img",
+                "baca": "attr:data-src"
+            }
+        },
+        "rinci": {
+            "nama": {
+                "selector": "[nama-konten-data]",
+                "read": "attr:data-content-name"
+            },
+            "harga": {
+                "selector": "[property='produk:harga:jumlah']",
+                "baca": "attr:konten"
+            },
+            "berat": {
+                "selector": ".qa-pd-weight-value",
+                "baca": "isi",
+                "temp_type_data": "mengambang",
+                "filter_keluaran": {
+                    "teks bersih": [
+                        " ",
+                        "kilogram",
+                        "gram"
+                    ]
+                },
+                "keluaran_kondisi": {
+                    "melipat": {
+                        "gram": 1,
+                        "kilogram": 1000
+                    }
+                }
+            },
+            "keterangan": {
+                "selector": ".qa-product-detail-description",
+                "baca": "isi",
+                "filter_keluaran": {
+                    "mengganti": {
+                        "<br/>": "\n"
+                    },
+                    "remove_tags": benar
+                }
+            },
+            "kondisi": {
+                "akar": benar,
+                "selector": "[property='twitter:data2']",
+                "baca": "attr:konten"
+            },
+            "thumbnail": {
+                "selector": ".c-product-image-gallery a.js-product-image-gallery__image",
+                "baca": "attr:href"
+            },
+            "kucing_1": {
+                "selector": "[itemtype='http://schema.org/BreadcrumbList'] li:eq(1) a [itemprop='name']",
+                "indeks": 0,
+                "baca": "isi"
+            },
+            "kucing_2": {
+                "selector": "[itemtype='http://schema.org/BreadcrumbList'] li:eq(2) a [itemprop='name']",
+                "baca": "isi"
+            },
+            "kucing_3": {
+                "selector": "[itemtype='http://schema.org/BreadcrumbList'] li:eq(3) a [itemprop='name']",
+                "baca": "isi"
+            },
+            "Terjual": {
+                "selector": ".c-deflist__value:eq(1)",
+                "baca": "isi"
+            },
+            "tampilan": {
+                "selector": ".c-deflist__value:eq(2)",
+                "baca": "isi"
+            },
+            "peringkat": {
+                "selector": ".c-product-rating__value",
+                "baca": "isi"
+            },
+            "peringkat_oleh": {
+                "selector": ".c-product-rating__count span",
+                "baca": "isi"
+            },
+            "__alternatif": [
+                {
+                    "keterangan": {
+                        "selector": ".product-detailed__massive-text",
+                        "indeks": 0,
+                        "akar": benar,
+                        "baca": "isi",
+                        "filter_keluaran": {
+                            "mengganti": {
+                                "<br/>": "\n"
+                            },
+                            "remove_tags": benar
+                        }
+                    },
+                    "thumbnail": {
+                        "akar": benar,
+                        "selector": ".js-product-image-gallery-images a",
+                        "baca": "attr:href"
+                    }
+                },
+                {
+                    "CATATAN": "Antarmuka Sialan Baru IKEA",
+                    "keterangan": {
+                        "selector": ".qa-pd-description",
+                        "baca": "isi",
+                        "filter_keluaran": {
+                            "mengganti": {
+                                "<br/>": "\n"
+                            },
+                            "remove_tags": benar
+                        }
+                    },
+                    "berat": {
+                        "selector": ".qa-pd-weight-value",
+                        "baca": "isi",
+                        "temp_type_data": "mengambang",
+                        "filter_keluaran": {
+                            "teks bersih": [
+                                " ",
+                                "kilogram",
+                                "gram"
+                            ]
+                        },
+                        "keluaran_kondisi": {
+                            "melipat": {
+                                "gram": 1,
+                                "kilogram": 1000
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
